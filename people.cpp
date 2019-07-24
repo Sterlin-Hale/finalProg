@@ -11,12 +11,27 @@
  * Constructors
  */
 
-People::People(std::string *ns, int *years, std::string *fs, const int DATASIZE){
-    numPeople = DATASIZE;
+People::People(std::string fileName){
+
+    numPeople = lineCount(fileName);
+
     persons = new Person*[numPeople];
+
+    std::ifstream infile(fileName);
+
     for( int i = 0; i < numPeople; i++){
-        persons[i] = new Person(ns[i], years[i], fs[i]);
+        getline(infile,fName, ' ');
+        getline(infile,lName, ',');
+        getline(infile,idNumber, ',');
+        id = stoi(idNumber);
+        getline(infile,ageValue, ',');
+        age = stoi(ageValue);
+        getline(infile,favFood, '\n');
+        persons[i] = new Person(fName, lName, id, age, favFood);
     }
+
+    infile.close();
+
 }
 
 /*
@@ -35,7 +50,7 @@ void People::displayPeople(){
 
     if (numPeople > 0) {
         for (int i = 0; i < numPeople; i++) {
-            std::cout << persons[i]->getid() << ": " << persons[i]->getName() << " is " << persons[i]->getAge()
+            std::cout << persons[i]->getid() << ": " << persons[i]->getfName() << " is " << persons[i]->getAge()
                       << " years old and likes " << persons[i]->getFavoriteFood() << "." << std::endl;
         }
     }else {
@@ -54,4 +69,22 @@ void People::clear(){
     persons = NULL;
     delete persons;
     numPeople = 0;
+}
+
+/*
+ * other methods
+ */
+
+int People::lineCount (std::string fileName){
+
+    std::ifstream infile(fileName);
+
+    numLines = 0;
+    while (getline(infile, line)) {
+        numLines++;
+    }
+
+    infile.close();
+
+    return numLines;
 }

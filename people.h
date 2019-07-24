@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "person.h"
 
@@ -21,7 +22,7 @@ public:
      * Constructors
      */
 
-    People(std::string*, int*, std::string*, const int);
+    People(std::string);
 
     /*
      * Deconstructors
@@ -43,8 +44,11 @@ public:
 
 private:
 
-    int numPeople;
+    int numPeople, numLines, id, age;
+    std::string line, lName, fName, idNumber, ageValue, favFood;
     Person **persons;
+
+int lineCount(std::string);
 
 };
 
