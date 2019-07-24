@@ -34,7 +34,7 @@ public:
      * Getters
      */
 
-    void displayPeople();
+    void displayPeople(int);
 
     /*
      * Setters
@@ -45,10 +45,15 @@ public:
 private:
 
     int numPeople, numLines, id, age;
-    std::string line, lName, fName, idNumber, ageValue, favFood;
+    std::string line, lName, fName, idNumber, ageValue, favFood, error;
     Person **persons;
 
+    enum selector { NONE,ID,AGE};
+
 int lineCount(std::string);
+void swap(Person**, Person**);
+void bubbleSortArray(Person**, int);
+
 
 };
 

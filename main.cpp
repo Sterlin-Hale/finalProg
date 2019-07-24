@@ -20,23 +20,23 @@ int main(int argc, char **argv) {
         if (people) {
             cout << "done." << endl << endl;
             cout << "Displaying all people in the People object... " << endl;
-            people->displayPeople();
+            people->displayPeople(0);
             cout << endl << endl;
             cout << "Displaying all people by ID... " << endl;
-//            people->displayPeople(ID);
+            people->displayPeople(1);
             cout << endl << endl;
             cout << "Displaying all people by age... " << endl;
-//            people->displayPeople(AGE);
+            people->displayPeople(2);
             cout << endl << endl;
             cout << "Displaying all people unsorted again... " << endl;
-            people->displayPeople();
+            people->displayPeople(0);
             cout << endl << endl;
 
             cout << "Clearing all people from the People object... ";
             people->clear();
             cout << "Done." << endl << endl;
             cout << "Displaying all people in the People object... " << endl;
-            people->displayPeople();
+            people->displayPeople(0);
             cout << endl << endl;
         }
     }
