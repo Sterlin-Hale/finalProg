@@ -12,9 +12,6 @@
  */
 
 People::People(std::string fileName){
-
-    const char* error = "Error: bad file name or empty file.";
-
     std::ifstream infile(fileName);
     numPeople = lineCount(fileName);
 
@@ -38,6 +35,7 @@ People::People(std::string fileName){
             infile.close();
         }
     } else{
+        const char* error = "Error: bad file name or empty file.";
         throw error;
     }
 }
@@ -58,16 +56,19 @@ void People::displayPeople(Sel x) {
     switch (x){
         case 1:bubbleSortArray(persons, 1);
                 for (int i = 0; i < numPeople; i++) {
-                    std::cout << "  " << temp[i]->getid() << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
+                    std::cout << "    " << std::setfill('0') << std::setw(4) << temp[i]->getid();
+                    std::cout << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
                 }
                 break;
         case 2:bubbleSortArray(persons, 2);
                 for (int i = 0; i < numPeople; i++) {
-                    std::cout << "   " << temp[i]->getid() << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
+                    std::cout << "    " << std::setfill('0') << std::setw(4) << temp[i]->getid();
+                    std::cout << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
                 }
                 break;
         default:for (int i = 0; i < numPeople; i++) {
-                    std::cout << "   " << persons[i]->getid() << ": " << persons[i]->getlName() << ", " << persons[i]->getfName() << " is " << persons[i]->getAge() << " years old and likes " << persons[i]->getFavoriteFood() << "." << std::endl;
+                    std::cout << "    " << std::setfill('0') << std::setw(4)  << persons[i]->getid();
+                    std::cout << ": " << persons[i]->getlName() << ", " << persons[i]->getfName() << " is " << persons[i]->getAge() << " years old and likes " << persons[i]->getFavoriteFood() << "." << std::endl;
                 }
                 break;
     }
