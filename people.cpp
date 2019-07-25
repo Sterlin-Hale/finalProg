@@ -95,9 +95,9 @@ void People::swap(Person **array1, Person **array2) {
 }
 
 void People::bubbleSortArray(Person **array, int x) {
-    duplicator();
     int i, j;
     if ( x == 1){
+        duplicator();
         for ( i = 0; i < numPeople - 1; i++){
             for ( j = 0; j < numPeople - i - 1; j++){
                 if (temp[j]->getid() > temp[j + 1]->getid()){
@@ -106,6 +106,7 @@ void People::bubbleSortArray(Person **array, int x) {
             }
         }
     } else if ( x == 2){
+        duplicator();
         for ( i = 0; i < numPeople - 1; i++){
             for ( j = 0; j < numPeople - i - 1; j++){
                 if (temp[j]->getAge() > temp[j + 1]->getAge()){
