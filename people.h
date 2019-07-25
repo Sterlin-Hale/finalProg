@@ -14,7 +14,7 @@
 
 #include "person.h"
 
-class People{
+class People {
 
 public:
 
@@ -46,15 +46,19 @@ private:
 
     int numPeople, numLines, id, age;
     std::string line, lName, fName, idNumber, ageValue, favFood, error;
-    Person **persons;
+    Person **persons, **temp;
 
-    enum selector { NONE,ID,AGE};
+    enum selector {
+        NONE, ID, AGE
+    };
 
-int lineCount(std::string);
-void swap(Person**, Person**);
-void bubbleSortArray(Person**, int);
+    int lineCount(std::string);
 
+    void swap(Person **, Person **);
 
+    void bubbleSortArray(Person **, int);
+
+    void duplicator();
 };
 
 #endif //CODING07_PEOPLE_H
