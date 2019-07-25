@@ -12,21 +12,33 @@
  */
 
 People::People(std::string fileName){
-    numPeople = lineCount(fileName);
-    persons = new Person*[numPeople];
+
+    const char* error = "Error: bad file name or empty file.";
+
     std::ifstream infile(fileName);
-    if (numPeople > 0) {
-        for (int i = 0; i < numPeople; i++) {
-            getline(infile, fName, ' ');
-            getline(infile, lName, ',');
-            getline(infile, idNumber, ',');
-            id = stoi(idNumber);
-            getline(infile, ageValue, ',');
-            age = stoi(ageValue);
-            getline(infile, favFood, '\n');
-            persons[i] = new Person(fName, lName, id, age, favFood);
+    numPeople = lineCount(fileName);
+
+    if (infile && numPeople > 0) {
+        persons = new Person *[numPeople];
+        if (numPeople > 0) {
+            for (int i = 0; i < numPeople; i++) {  //Reads line by line through file
+                getline(infile, fName, ' ');
+                getline(infile, lName, ',');
+                getline(infile, idNumber, ',');
+                getline(infile, ageValue, ',');
+                getline(infile, favFood, '\n');
+
+                //converts ID and age to integers
+                id = stoi(idNumber);
+                age = stoi(ageValue);
+
+
+                persons[i] = new Person(fName, lName, id, age, favFood);
+            }
+            infile.close();
         }
-        infile.close();
+    } else{
+        throw error;
     }
 }
 
@@ -42,20 +54,22 @@ People::~People(){
  * Getters
  */
 
-void People::displayPeople(int x) {
-    if (numPeople > 0 && (x == 1 || x == 2)) {
-        bubbleSortArray(persons, x);
-        for (int i = 0; i < numPeople; i++) {
-            std::cout << temp[i]->getid() << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
-        }
-    } else if (numPeople > 0 && x == 0) {
-        for (int i = 0; i < numPeople; i++) {
-            std::cout << persons[i]->getid() << ": " << persons[i]->getlName() << ", "
-                      << persons[i]->getfName() << " is " << persons[i]->getAge() << " years old and likes " << persons[i]->getFavoriteFood() << "." << std::endl;
-        }
-    }else{
-            std::cout << "\tThere are no people to display." << std::endl;
-
+void People::displayPeople(Sel x) {
+    switch (x){
+        case 1:bubbleSortArray(persons, 1);
+                for (int i = 0; i < numPeople; i++) {
+                    std::cout << "  " << temp[i]->getid() << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
+                }
+                break;
+        case 2:bubbleSortArray(persons, 2);
+                for (int i = 0; i < numPeople; i++) {
+                    std::cout << "   " << temp[i]->getid() << ": " << temp[i]->getlName() << ", " << temp[i]->getfName() << " is " << temp[i]->getAge() << " years old and likes " << temp[i]->getFavoriteFood() << "." << std::endl;
+                }
+                break;
+        default:for (int i = 0; i < numPeople; i++) {
+                    std::cout << "   " << persons[i]->getid() << ": " << persons[i]->getlName() << ", " << persons[i]->getfName() << " is " << persons[i]->getAge() << " years old and likes " << persons[i]->getFavoriteFood() << "." << std::endl;
+                }
+                break;
     }
 }
 
@@ -97,7 +111,7 @@ void People::swap(Person **array1, Person **array2) {
 void People::bubbleSortArray(Person **array, int x) {
     int i, j;
     if ( x == 1){
-        duplicator();
+        duplicator(persons);
         for ( i = 0; i < numPeople - 1; i++){
             for ( j = 0; j < numPeople - i - 1; j++){
                 if (temp[j]->getid() > temp[j + 1]->getid()){
@@ -106,7 +120,7 @@ void People::bubbleSortArray(Person **array, int x) {
             }
         }
     } else if ( x == 2){
-        duplicator();
+        duplicator(persons);
         for ( i = 0; i < numPeople - 1; i++){
             for ( j = 0; j < numPeople - i - 1; j++){
                 if (temp[j]->getAge() > temp[j + 1]->getAge()){
@@ -117,10 +131,10 @@ void People::bubbleSortArray(Person **array, int x) {
     }
 }
 
-void People::duplicator(){
+void People::duplicator(Person **array){
     temp = new Person*[numPeople];
     for (int i = 0; i < numPeople; i++){
-        temp[i] = persons[i];
+        temp[i] = array[i];
     }
 
 }

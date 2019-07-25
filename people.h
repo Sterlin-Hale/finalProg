@@ -14,6 +14,11 @@
 
 #include "person.h"
 
+enum Sel {
+    NONE, ID, AGE
+};
+
+
 class People {
 
 public:
@@ -34,7 +39,7 @@ public:
      * Getters
      */
 
-    void displayPeople(int);
+    void displayPeople(Sel = NONE);
 
     /*
      * Setters
@@ -48,17 +53,13 @@ private:
     std::string line, lName, fName, idNumber, ageValue, favFood, error;
     Person **persons, **temp;
 
-    enum selector {
-        NONE, ID, AGE
-    };
+
+    Sel x;
 
     int lineCount(std::string);
-
     void swap(Person **, Person **);
-
     void bubbleSortArray(Person **, int);
-
-    void duplicator();
+    void duplicator(Person **);
 };
 
 #endif //CODING07_PEOPLE_H
