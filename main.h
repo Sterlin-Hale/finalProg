@@ -1,6 +1,10 @@
-/*
- * Your header here
- */
+//***********************************************************
+//Name: Sterlin Hale
+//Assignment: Final
+//Purpose: read data from file into object. sort multiple ways and display
+//Notes: main.cpp and main.h were supplied by instructor
+//***********************************************************
+
 
 #ifndef MAIN_H
 #define MAIN_H

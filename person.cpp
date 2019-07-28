@@ -1,7 +1,7 @@
 //***********************************************************
 //Name: Sterlin Hale
-//Assignment: 07
-//Purpose:Object Oriented Programming: Create a "person" object that will then be used to create a "People" object which contains an array of pointers to "Person" object.
+//Assignment: Final
+//Purpose: read data from file into object. sort multiple ways and display
 //Notes: main.cpp and main.h were supplied by instructor
 //***********************************************************
 

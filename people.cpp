@@ -1,9 +1,10 @@
 //***********************************************************
 //Name: Sterlin Hale
-//Assignment: 07
-//Purpose:Object Oriented Programming: Create a "person" object that will then be used to create a "People" object which contains an array of pointers to "Person" object.
+//Assignment: Final
+//Purpose: read data from file into object. sort multiple ways and display
 //Notes: main.cpp and main.h were supplied by instructor
 //***********************************************************
+
 
 #include "people.h"
 
@@ -67,7 +68,7 @@ void People::displayPeople(Sel x) {
                 }
                 break;
         default:for (int i = 0; i < numPeople; i++) {
-                    std::cout << "    " << std::setfill('0') << std::setw(4)  << persons[i]->getid();
+                    std::cout << "    " << std::setfill('0') << std::setw(4) << persons[i]->getid();
                     std::cout << ": " << persons[i]->getlName() << ", " << persons[i]->getfName() << " is " << persons[i]->getAge() << " years old and likes " << persons[i]->getFavoriteFood() << "." << std::endl;
                 }
                 break;
@@ -84,6 +85,7 @@ void People::clear(){
     }
     persons = NULL;
     delete persons;
+    delete temp;
     numPeople = 0;
 }
 
